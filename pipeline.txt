@@ -1,0 +1,6 @@
+1. Nodes
+2. Graph 
+3. LLMs
+4. state
+5. UI
+6. Edges
