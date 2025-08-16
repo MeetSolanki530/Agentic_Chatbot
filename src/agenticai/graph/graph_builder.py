@@ -1,10 +1,15 @@
 from langgraph.graph import StateGraph,START,END
+from langgraph.prebuilt import tools_condition,ToolNode
 from src.agenticai.state.state import State
 from src.agenticai.nodes.basic_chatbot_node import BasicChatbotNode
+from src.agenticai.tools.search_tool import get_tools,create_tool_node
+from src.agenticai.nodes.chatbot_with_tool_node import ChabotWithToolNode
 
 class GraphBuilder:
-    def __init__(self,model):
+    def __init__(self,model,user_controls=None):
         self.llm = model
+        self.graph_builder = StateGraph(State)
+        self.user_controls = user_controls or {}
         self.graph_builder = StateGraph(State)
 
     
@@ -21,6 +26,50 @@ class GraphBuilder:
         self.graph_builder.add_edge(START,"chatbot")
         self.graph_builder.add_edge("chatbot",END)
 
+    def chatbot_with_tools_build_graph(self,selected_engine=None,tavily_key=None):
+
+        """
+        Builds an advanced chatbot graph with tool integration.
+        This Method creates a chatbot graph that includes both a chatbot node 
+        and a tool node. it defines tools, initializes the chatbot with tool
+        capabilities, and sets up conditional and direct edges between nodes.
+        The Chatbot node is set as the entry point.
+        """
+        
+        selected_engine = self.user_controls.get("selected_search_engine")
+        tavily_key = self.user_controls.get("TAVILY_API_KEY")
+
+        ### Define the tool and tool node
+
+        tools = get_tools(selected_engine, tavily_key)  # now conditional
+        if not tools:
+            raise ValueError(f"No tools available for engine: {selected_engine}")
+            
+        tool_node = create_tool_node(tools=tools)
+        
+        # Create chatbot with tool integration
+        obj_chatbot_with_node = ChabotWithToolNode(self.llm)
+        chatbot_node = obj_chatbot_with_node.create_chatbot(tools=tools)
+
+        ## Add nodes
+
+        self.graph_builder.add_node("chatbot",chatbot_node)
+        self.graph_builder.add_node("tools",tool_node)
+
+        # Defines Edges
+        self.graph_builder.add_edge(START,"chatbot")
+
+        self.graph_builder.add_conditional_edges(
+            "chatbot",
+            tools_condition,
+            {
+                "tools": "tools",
+                "__end__": END
+            }
+        )
+        self.graph_builder.add_edge("tools","chatbot")
+        # self.graph_builder.add_edge("chatbot",END)
+
     
     def setup_graph(self,usecase : str):
 
@@ -30,6 +79,12 @@ class GraphBuilder:
 
         if usecase == "Basic Chatbot":
             self.basic_chatbot_build_graph()
+        
+        elif usecase =="Chatbot With Web":
+            self.chatbot_with_tools_build_graph(
+                selected_engine=self.user_controls.get("selected_search_engine"),
+                tavily_key=self.user_controls.get("TAVILY_API_KEY")
+            )
         
         return self.graph_builder.compile()
 

@@ -70,5 +70,20 @@ class LoadStreamlitUI:
             ## Usecase Selection
             self.user_controls["selected_usecase"] = st.selectbox("Select Usecases",usecase_options)
 
+            if self.user_controls["selected_usecase"] == "Chatbot With Web":
+                # self.user_controls["TAVILY_API_KEY"] = st.session_state["TAVILY_API_KEY"] = st.text_input("Enter Tavily API Key: ",type="password")
+                self.user_controls["selected_search_engine"] = st.selectbox("Select Web Search Engine", self.config.get_web_search_providers())
+
+                if self.user_controls["selected_search_engine"] == "TavilySearch":
+                    os.environ["TAVILY_API_KEY"] = self.user_controls["TAVILY_API_KEY"] = st.session_state["TAVILY_API_KEY"] = st.text_input("Enter Tavily API Key: ", type="password")
+                    
+                    # validate API Key
+                    if not self.user_controls["TAVILY_API_KEY"]:
+                        st.warning("⚠️ Please enter your TAVILY_API_KEY to proceed https://app.tavily.com/home")
+                
+                else:
+                    # For DuckDuckGo no key needed
+                    self.user_controls["TAVILY_API_KEY"] = None
+                
         return self.user_controls           
             

@@ -2,7 +2,7 @@ from src.agenticai.state.state import State
 
 class BasicChatbotNode:
     """
-    Basic Chatbot login Implementation
+    Basic Chatbot logic Implementation
     """
 
     def __init__(self,model):

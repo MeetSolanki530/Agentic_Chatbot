@@ -26,5 +26,8 @@ class Config:
     def get_cerebras_model_options(self):
         return self.config["DEFAULT"].get("CEREBRAS_MODEL_OPTIONS").split(", ")
     
+    def get_web_search_providers(self):
+        return self.config["DEFAULT"].get("SEARCH_OPTIONS").split(", ")
+    
     def get_page_title(self):
         return self.config["DEFAULT"].get("PAGE_TITLE")
