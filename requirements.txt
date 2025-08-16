@@ -1,3 +1,5 @@
+### Install :- pip install venv
+### Create Venv :- uv venv
 ### Activate Command :- .venv\Scripts\Activate.ps1cl
 langchain
 langchain_community
