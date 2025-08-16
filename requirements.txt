@@ -11,3 +11,6 @@ streamlit
 tavily-python
 ddgs
 duckduckgo-search
+langchain-google-genai
+langchain-cerebras
+langgraph

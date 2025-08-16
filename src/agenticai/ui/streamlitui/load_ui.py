@@ -33,44 +33,42 @@ class LoadStreamlitUI:
 
                 # Validate API Key
                 if not self.user_controls["GROQ_API_KEY"]:
-                    st.warning("⚠️ Please Enter Your Groq API Key To proceed.")
+                    st.warning("⚠️ Please Enter Your Groq API Key To proceed. https://console.groq.com/keys")
 
 
             if self.user_controls["selected_llm"] == 'OpenAI':
                 ### Model Options
                 model_options = self.config.get_openai_model_options()
-                self.user_controls["selected_groq_model"] = st.selectbox("Select Model",model_options)
+                self.user_controls["selected_openai_model"] = st.selectbox("Select Model",model_options)
                 self.user_controls["OPENAI_API_KEY"] = st.session_state["OPENAI_API_KEY"] =  st.text_input("OpenAI API Key",type="password")
 
                 # Validate API Key
                 if not self.user_controls["OPENAI_API_KEY"]:
-                    st.warning("⚠️ Please Enter Your OpenAI API Key To proceed.")
+                    st.warning("⚠️ Please Enter Your OpenAI API Key To proceed. https://platform.openai.com/account/api-keys")
 
             if self.user_controls["selected_llm"] == 'Google':
                 ### Model Options
                 model_options = self.config.get_google_model_options()
-                self.user_controls["selected_groq_model"] = st.selectbox("Select Model",model_options)
+                self.user_controls["selected_google_model"] = st.selectbox("Select Model",model_options)
                 self.user_controls["GOOGLE_API_KEY"] =  st.session_state["GOOGLE_API_KEY"] = st.text_input("Google API Key",type="password")
                 
                 # Validate API Key
                 if not self.user_controls["GOOGLE_API_KEY"]:
-                    st.warning("⚠️ Please Enter Your Google API Key To proceed.")
+                    st.warning("⚠️ Please Enter Your Google API Key To proceed. https://aistudio.google.com/app/apikey")
 
 
             if self.user_controls["selected_llm"] == 'Cerebras':
                 ### Model Options
                 model_options = self.config.get_cerebras_model_options()
-                self.user_controls["selected_groq_model"] = st.selectbox("Select Model",model_options)
+                self.user_controls["selected_cerebras_model"] = st.selectbox("Select Model",model_options)
                 self.user_controls["CEREBRAS_API_KEY"] = st.session_state["CEREBRAS_API_KEY"] = st.text_input("Cerebras API Key",type="password")
 
                 # Validate API Key
                 if not self.user_controls["CEREBRAS_API_KEY"]:
-                    st.warning("⚠️ Please Enter Your Cerebras API Key To proceed.")
-
-            
+                    st.warning("⚠️ Please Enter Your Cerebras API Key To proceed. https://inference.cerebras.ai/")
 
             ## Usecase Selection
-            self.user_controls["selected_usercase"] = st.selectbox("Select Usecases",usecase_options)
+            self.user_controls["selected_usecase"] = st.selectbox("Select Usecases",usecase_options)
 
         return self.user_controls           
             
