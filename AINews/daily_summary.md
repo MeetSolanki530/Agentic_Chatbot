@@ -1,0 +1,12 @@
+# Daily AI News Summary
+
+### [2025-08-17] - Top Senate Democrats urged Trump to reassess AI chip sales to China, citing national security risks and weakened U.S. tech leadership.(https://www.ainvest.com/news/top-senate-democrats-urge-trump-reassess-ai-chip-sales-china-security-concerns-2508/)
+### [2025-08-17] - Semiconductor giant Nvidia and artificial intelligence (AI) kingpin Palantir Technologies are two of the most compelling technology stocks in the market.(https://www.theglobeandmail.com/investing/markets/stocks/PLTR-Q/pressreleases/34209053/better-technology-stock-nvidia-vs-palantir/)
+### [2025-08-16] - AI-powered stuffed animals are coming for your kids.(https://techcrunch.com/2025/08/16/ai-powered-stuffed-animals-are-coming-for-your-kids/)
+### [2025-08-16] - Elon Musk claims AI is now limited by a lack of human data.(https://glassalmanac.com/elon-musk-claims-ai-is-now-limited-by-a-lack-of-human-data/)
+### [2025-08-16] - Manufacturers accelerate AI adoption to tackle labor, cybersecurity challenges.(https://www.manilatimes.net/2025/08/17/business/sunday-business-it/manufacturers-accelerate-ai-adoption-to-tackle-labor-cybersecurity-challenges/2169035)
+### [2025-08-16] - Trump admin unveils groundbreaking tool 'supercharging' gov't efficiency in AI.(https://www.foxnews.com/tech/fox-news-ai-newsletter-trump-admin-unveils-groundbreaking-tool-supercharging-govt-efficiency-ai)
+### [2025-08-16] - GPT-5 will be smarter than ever with less AI model switching.(https://www.windowscentral.com/artificial-intelligence/openai-chatgpt/from-plateau-predictions-to-buggy-rollouts-bill-gates-gpt-5-skepticism-looks-strangely-accurate)
+### [2025-08-16] - Software Apps GPT-5 will be smarter than ever with less AI model switching.(https://www.rswebsols.com/news/ato-evaluates-ai-coding-support-for-800-main-developers/)
+### [2025-08-16] - Agriculture4.0 represents the next frontier in farming technology, where advanced technologies converge to create “smart farms.”(https://farmonaut.com/asia/future-agriculture-technology-in-india-2025-trends)
+### [2025-08-16] - Self-styled godman in Odisha arrested over rape allegations.(https://www.hindustantimes.com/cities/others/selfstyled-godman-in-odisha-arrested-over-rape-allegations-101755358030855.html)

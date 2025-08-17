@@ -4,6 +4,7 @@ from src.agenticai.state.state import State
 from src.agenticai.nodes.basic_chatbot_node import BasicChatbotNode
 from src.agenticai.tools.search_tool import get_tools,create_tool_node
 from src.agenticai.nodes.chatbot_with_tool_node import ChabotWithToolNode
+from src.agenticai.nodes.ai_news_node import AINewsNode
 
 class GraphBuilder:
     def __init__(self,model,user_controls=None):
@@ -70,6 +71,26 @@ class GraphBuilder:
         self.graph_builder.add_edge("tools","chatbot")
         # self.graph_builder.add_edge("chatbot",END)
 
+
+    def ai_news_builder_graph(self):
+
+        ai_news_node = AINewsNode(self.llm)
+
+
+        ### added nodes
+
+        self.graph_builder.add_node("fetch_news",ai_news_node.fetch_news)
+        self.graph_builder.add_node("summarize_news",ai_news_node.summarize_news)
+        self.graph_builder.add_node("save_result",ai_news_node.save_result)
+        
+
+        ### added edges
+
+        self.graph_builder.set_entry_point("fetch_news") # same as START, "fetch_news"
+        self.graph_builder.add_edge("fetch_news","summarize_news")
+        self.graph_builder.add_edge("summarize_news","save_result")
+        self.graph_builder.add_edge("save_result",END)
+
     
     def setup_graph(self,usecase : str):
 
@@ -85,6 +106,9 @@ class GraphBuilder:
                 selected_engine=self.user_controls.get("selected_search_engine"),
                 tavily_key=self.user_controls.get("TAVILY_API_KEY")
             )
+
+        elif usecase=="AI News":
+            self.ai_news_builder_graph()
         
         return self.graph_builder.compile()
 
